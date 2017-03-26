@@ -17,6 +17,7 @@
 */
 Route::get('/', 'EquationController@index');
 
+Route::get('/process', 'EquationController@process');
 
 /**
 * Log viewer

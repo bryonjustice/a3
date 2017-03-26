@@ -44,7 +44,7 @@
 
             <!-- FORM :: BEGIN -->
             <div class="col-md-8 modal-content"><br />
-                <form method="GET" action="index.php">
+                <form method="GET" action="process">
 
                 <!-- 1. SELECT R VALUE -->
                 <div class="form-group">
