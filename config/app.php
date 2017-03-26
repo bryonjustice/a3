@@ -231,8 +231,6 @@ return [
 
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
 
-        'Random'	=> 'Rych\Random\Random',
-
     ],
 
 ];
