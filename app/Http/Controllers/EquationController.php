@@ -34,7 +34,9 @@ class EquationController extends Controller
         $n = EquationController::calculate($r,$fp,$ne,$fl,$fi,$fc,$l);
 
         if ($n>0) {
-            return view('drake/result');
+            return view('drake/result')->with([
+                'n'=> $n,
+            ]);
         }
         else {
             return view('drake/form');

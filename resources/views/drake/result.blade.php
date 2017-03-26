@@ -16,11 +16,11 @@
                         alt="Drake Equation Results" width="200"/>
                     </p>
                     <blockquote>
-                        <p>Result: There are communicating
+                        <p>Result: There are communicating {{$n}}
                         civilizations.</p>
                         <small>
                         Based on the calculations you entered there are
-                        <span class="result"></span>
+                        <span class="result">{{$n}}</span>
                         communicating civilizations in our Milky Way Galaxy
                         alone. If intelligent life exists within our home
                         galaxy then it surely would exist in others.
