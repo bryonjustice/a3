@@ -11,7 +11,15 @@ class EquationController extends Controller
     * /
     */
     public function index() {
-        return view('/drake/form');
+        return view('/drake/form')-> with([
+            'r'=> null,
+            'fp'=> null,
+            'ne'=> null,
+            'fl'=> null,
+            'fi'=> null,
+            'fc'=> null,
+            'l'=> null,
+        ]);
     }
 
     /**
@@ -36,10 +44,24 @@ class EquationController extends Controller
         if ($n>0) {
             return view('drake/result')->with([
                 'n'=> $n,
+                'fp'=> $fp,
+                'ne'=> $ne,
+                'fl'=> $fl,
+                'fi'=> $fi,
+                'fc'=> $fc,
+                'l'=> $l,
             ]);
         }
         else {
-            return view('drake/form');
+            return view('drake/form')-> with([
+                'r'=> $r,
+                'fp'=> $fp,
+                'ne'=> $ne,
+                'fl'=> $fl,
+                'fi'=> $fi,
+                'fc'=> $fc,
+                'l'=> $l,
+            ]);
         }
 
     }
