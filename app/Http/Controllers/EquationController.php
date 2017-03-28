@@ -39,31 +39,24 @@ class EquationController extends Controller
         $fc = $request->input('step6', 0); # Equates to fc in the equation
         $l = $request->input('step7', 0);  # Equates to L in the equation
 
+        # Validate the request data
+        $this->validate($request, [
+            'step1' => 'required|numeric|min:1.0|max:3.0',
+            'step2' => 'required|numeric|min:0.0001|max:1.0',
+            'step3' => 'required|numeric|min:0.0001|max:1.0',
+            'step4' => 'required|numeric|min:0.0001|max:1.0',
+            'step5' => 'required|numeric|min:0.0001|max:1.0',
+            'step6' => 'required|numeric|min:0.0001|max:1.0',
+            'step7' => 'required|numeric|min:0.0001',
+        ]);
+
         $n = EquationController::calculate($r,$fp,$ne,$fl,$fi,$fc,$l);
 
         if ($n>0) {
             return view('drake/result')->with([
                 'n'=> $n,
-                'fp'=> $fp,
-                'ne'=> $ne,
-                'fl'=> $fl,
-                'fi'=> $fi,
-                'fc'=> $fc,
-                'l'=> $l,
             ]);
         }
-        else {
-            return view('drake/form')-> with([
-                'r'=> $r,
-                'fp'=> $fp,
-                'ne'=> $ne,
-                'fl'=> $fl,
-                'fi'=> $fi,
-                'fc'=> $fc,
-                'l'=> $l,
-            ]);
-        }
-
     }
 
     public function calculate(Float $r, Float $fp, Float $ne, Float $fl,

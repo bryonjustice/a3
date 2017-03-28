@@ -23,7 +23,7 @@
             <div class="col-md-1"></div>
         </div>
 
-        <!-- EQUATION SECTION -->
+        <!-- EXPLAIN EQUATION SECTION -->
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-8 formula">
@@ -38,6 +38,26 @@
         </div>
         <br />
 
+        <!-- WARNING / ALERT SECTION -->
+@if(count($errors) > 0)
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8 formula">
+                <div class='alert alert-danger'>We are sorry.  Your form could
+                not be submitted. Please correct the following fields:<br />
+                <ul>
+    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+    @endforeach
+                </ul>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+        <br />
+@endif
+
+
         <!-- USER INPUT SECTION -->
         <div class="row">
             <div class="col-md-2"></div>
@@ -45,6 +65,7 @@
             <!-- FORM :: BEGIN -->
             <div class="col-md-8 modal-content"><br />
                 <form method="GET" action="process">
+                {{ csrf_field() }}
 
                 <!-- 1. SELECT R VALUE -->
                 <div class="form-group">
@@ -59,23 +80,28 @@
                     between 1.5 - 3 stars per year.
                     </p>
                     <select class="form-control" name="step1"
-                        id="step1" required>
+                        id="step1" >
                         <option value="">
                             STEP 1 - SELECTION NEEDED
                         </option>
-                        <option value="1.0" {{($r == 1.0) ? 'SELECTED' : ''}}>
+                        <option value="1.0"
+                            {{ (old('step1') == 1.0) ? 'SELECTED' : '' }}>
                             1 star.  Original estimate
                         </option>
-                        <option value="1.5" {{($r == 1.5) ? 'SELECTED' : ''}}>
+                        <option value="1.5"
+                            {{ (old('step1') == 1.5) ? 'SELECTED' : '' }}>
                             1.5 stars. Current NASA/ESA minimum estimate
                         </option>
-                        <option value="2.0" {{($r == 2.0) ? 'SELECTED' : ''}}>
+                        <option value="2.0"
+                            {{ (old('step1') == 2.0) ? 'SELECTED' : '' }}>
                             2 stars.
                         </option>
-                        <option value="2.5" {{($r == 2.5) ? 'SELECTED' : ''}}>
+                        <option value="2.5"
+                            {{ (old('step1') == 2.5) ? 'SELECTED' : '' }}>
                             2.5 stars.
                         </option>
-                        <option value="3.0" {{($r == 3.0) ? 'SELECTED' : ''}}>
+                        <option value="3.0"
+                            {{ (old('step1') == 3.0) ? 'SELECTED' : '' }}>
                             3 stars.  Current NASA/ESA maximum
                         estimate</option>
                     </select>
@@ -96,56 +122,56 @@
                     <div class="row">
                         <div class="col-md-3">
                             <input type="radio" name="step2" value="0.1"
-                            {{($fp == 0.1) ? 'CHECKED' : ''}}>10%
+                            {{ (old('step2') == 0.1) ? 'CHECKED' : '' }}>10%
                         </div>
 
                         <div class="col-md-3">
                             <input type="radio" name="step2" value="0.2"
-                            {{($fp == 0.2) ? 'CHECKED' : ''}}>20%
+                            {{ (old('step2') == 0.2) ? 'CHECKED' : '' }}>20%
                         </div>
 
                         <div class="col-md-3">
                             <input type="radio" name="step2" value="0.3"
-                            {{($fp == 0.3) ? 'CHECKED' : ''}}>30%
+                            {{ (old('step2') == 0.3) ? 'CHECKED' : '' }}>30%
                         </div>
 
                         <div class="col-md-3">
                             <input type="radio" name="step2" value="0.4"
-                            {{($fp == 0.4) ? 'CHECKED' : ''}}>40%
+                            {{ (old('step2') == 0.4) ? 'CHECKED' : '' }}>40%
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-3">
                             <input type="radio" name="step2" value="0.5"
-                            {{($fp == 0.5) ? 'CHECKED' : ''}}>50%
+                            {{ (old('step2') == 0.5) ? 'CHECKED' : '' }}>50%
                         </div>
 
                         <div class="col-md-3">
                             <input type="radio" name="step2" value="0.6"
-                            {{($fp == 0.6) ? 'CHECKED' : ''}}>60%
+                            {{ (old('step2') == 0.6) ? 'CHECKED' : '' }}>60%
                         </div>
 
                         <div class="col-md-3">
                             <input type="radio" name="step2" value="0.7"
-                            {{($fp == 0.7) ? 'CHECKED' : ''}}>70%
+                            {{ (old('step2') == 0.7) ? 'CHECKED' : '' }}>70%
                         </div>
 
                         <div class="col-md-3">
                             <input type="radio" name="step2" value="0.8"
-                            {{($fp == 0.8) ? 'CHECKED' : ''}}>80%
+                            {{ (old('step2') == 0.8) ? 'CHECKED' : '' }}>80%
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-3">
                             <input type="radio" name="step2" value="0.9"
-                            {{($fp == 0.9) ? 'CHECKED' : ''}}>90%
+                            {{ (old('step2') == 0.9) ? 'CHECKED' : '' }}>90%
                         </div>
 
                         <div class="col-md-9">
                             <input type="radio" name="step2" value="1.0"
-                            {{($fp == 1.0) ? 'CHECKED' : ''}}>
+                            {{ (old('step2') == 1.0) ? 'CHECKED' : '' }}>
                             100% (Current research states that this is likely
                             the rule)<br>
                         </div>
@@ -168,8 +194,8 @@
                     this number is roughly 0.4.
                     </p>
                     <input type="text" name="step3" id="step3"
-                        value="{{$ne or ''}}"
-                        placeholder="example: 0.4" required/>
+                        value="{{ old('step3') }}"
+                        placeholder="example: 0.4" />
                 </div>
                 <br />
 
@@ -181,11 +207,11 @@
 
                     <p class="hint">Drake's initial calculation estimated that
                     100 percent of all planets that could develop life would
-                    develop life.  Valid entries range from 0.0 to 1.0.
+                    develop life.  Valid entries range from 0.0001 to 1.0.
                     </p>
                     <input type="text" name="step4" id="step4"
-                        value="{{$fl or ''}}"
-                        placeholder="example: 1.0" required/>
+                        value="{{ old('step4') }}"
+                        placeholder="example: 1.0" />
                 </div>
                 <br />
 
@@ -198,14 +224,14 @@
 
                     <p class="hint">Drake, also optimistically, assumed that 100
                     percent of these planets would eventually develop
-                    intelligent life. Valid entries range from 0.0 to 1.0.</p>
+                    intelligent life. Valid entries range from 0.0001 to 1.0.</p>
                     <input type="text" name="step5" id="step5"
-                        value="{{$fi or ''}}"
-                        placeholder="example: 1.0" required/>
+                        value="{{ old('step5') }}"
+                        placeholder="example: 1.0" />
                 </div>
                 <br />
 
-                <!-- 5. INPUT fc VALUE -->
+                <!-- 6. INPUT fc VALUE -->
                 <div class="form-group">
                     <label for="step6">Step 6: Fraction of those
                     civilizations that have developed communications</label>
@@ -213,14 +239,14 @@
 
                     <p class="hint">Drake's calculation projected that between
                     10-20% of intelligent life would communicate. Valid entries
-                    range from 0.0 to 1.0.</p>
+                    range from 0.0001 to 1.0.</p>
                     <input type="text" name="step6" id="step6"
-                        value="{{$fc or ''}}"
-                        placeholder="example: 0.2" required/>
+                        value="{{ old('step6') }}"
+                        placeholder="example: 0.2" />
                 </div>
                 <br />
 
-                <!-- 6. INPUT L VALUE -->
+                <!-- 7. INPUT L VALUE -->
                 <div class="form-group">
                     <label for="step7">Step 7: Length of time over which such
                     civilizations release detectable signals into space</label>
@@ -231,8 +257,8 @@
                     Enter your best hypothesis.
                     </p>
                     <input type="text" name="step7" id="step7"
-                        value="{{$l or ''}}"
-                        placeholder="example: 320.0" required/>
+                        value="{{ old('step7') }}"
+                        placeholder="example: 320.0" />
                 </div>
                 <input type="submit" class="btn btn-primary btn-small">
                 <br />
