@@ -50,8 +50,10 @@ class EquationController extends Controller
             'step7' => 'required|numeric|min:0.0001',
         ]);
 
+        # Compute the result value (N)
         $n = EquationController::calculate($r,$fp,$ne,$fl,$fi,$fc,$l);
 
+        # If N is greater than zero return the view: /drake/result.blade.php
         if ($n>0) {
             return view('drake/result')->with([
                 'n'=> $n,
